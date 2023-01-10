@@ -1,13 +1,19 @@
-import { useEffect } from "react";
+import { FC, useEffect } from "react";
 import { Document, Page, pdfjs} from "react-pdf/dist/esm/entry.vite"
+import type {Dispatch, SetStateAction} from "react"
 pdfjs.GlobalWorkerOptions.workerSrc = "../../../public/pdf.min.js";
 
+interface Props {
+  pdfUrl: string
 
-function PdfPreview({pdfUrl, pageNumber, setNumPages, width}) {
-  useEffect(() => {
-    console.log(Page)
-  }, [])
-  const onLoadSuccess = (info) => {
+  pageNumber: number
+  setNumPages: Dispatch<SetStateAction<number | undefined>>
+  width:number | undefined
+}
+
+const PdfPreview:FC<Props> = ({pdfUrl, pageNumber, setNumPages, width}) => {
+
+  const onLoadSuccess = (info: { numPages: SetStateAction<number | undefined>; }) => {
     console.log("onLoadSuccess", info)
     setNumPages(info.numPages);
   }

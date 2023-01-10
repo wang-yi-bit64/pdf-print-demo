@@ -10,7 +10,7 @@ import { useReactToPrint } from "./components/ReactToPrint";
 
 function App() {
   const [fileList, setFileList] = useState<UploadFile[]>([]);
-  const [numPages, setNumPages] = useState(undefined);
+  const [numPages, setNumPages] = useState<number | undefined>(undefined);
   const [open, setOpen] = useState<boolean>(false);
   const iframeRef = useRef(null);
   const [pageNumber, setPageNumber] = useState(1);
